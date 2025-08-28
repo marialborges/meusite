@@ -1,0 +1,571 @@
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background-color: #20587d; 
+  color: #2a2a2a;
+  line-height: 1.6;
+}
+
+header {
+  background-color: #205375;
+  color: #f0f4f8;
+  padding: 30px 20px 40px 20px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+
+.cabecalho {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: nowrap;
+}
+
+.imagem-header {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 100%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.imagem-header.esquerda { margin-right: 15px; }
+.imagem-header.direita  { margin-left: 15px; }
+
+header h1 {
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin: 0;
+  flex-grow: 1;
+  text-align: center;
+}
+
+header p {
+  font-weight: 400;
+  font-size: 1.1rem;
+  margin-top: 5px;
+  color: #cfd8dc;
+}
+
+/* ========= Navegação ========= */
+nav {
+  margin: 30px auto 0 auto;
+  max-width: 900px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+nav button {
+  background-color: #3282b8;
+  color: #f0f4f8;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+  min-width: 140px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+nav button:hover,
+nav button.active {
+  background-color: #1b4f72;
+  box-shadow: 0 5px 14px rgba(27,79,114,0.7);
+  outline: none;
+}
+
+/* ========= Conteúdo Principal ========= */
+main {
+  max-width: 900px;
+  margin: 40px auto 60px auto;
+  padding: 0 20px;
+}
+
+.aba {
+  background-color: #fff;
+  padding: 25px 30px;
+  margin-bottom: 30px;
+  border-radius: 25px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+.aba:hover {
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #205375;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #3282b8;
+  padding-bottom: 8px;
+}
+
+/* ========= Formulários ========= */
+/* ========= Formulários (ajustado) ========= */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;           /* sempre ocupa a largura disponível */
+  box-sizing: border-box; /* inclui padding e borda no cálculo */
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  border: 1.6px solid #b0bec5;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: inherit;
+}
+
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #3282b8;
+  box-shadow: 0 0 6px #3282b8aa;
+}
+
+button[type="submit"],
+button {
+  background-color: #1b4f72;
+  color: #f0f4f8;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.15rem;
+  box-shadow: 0 4px 10px rgba(27,79,114,0.6);
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+button:hover {
+  background-color: #0d2f47;
+  box-shadow: 0 6px 14px rgba(13,47,71,0.85);
+}
+
+/* ========= Mensagens ========= */
+.mensagem-ajuda {
+  font-weight: bold;
+  color: #0d2f47;
+  margin-bottom: 15px;
+}
+
+.mensagem-confirmacao {
+  margin-top: 20px;
+  color: green;
+  font-weight: bold;
+  white-space: pre-line;
+}
+
+/* ========= Listas ========= */
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li {
+  background: #e3f2fd;
+  margin-bottom: 12px;
+  padding: 12px 18px;
+  border-radius: 15px;
+  font-size: 1rem;
+  color: #1b4f72;
+  font-weight: 600;
+  box-shadow: inset 2px 2px 6px #bbe1fa;
+}
+
+ul li a {
+  color: #205375;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+ul li a:hover {
+  text-decoration: underline;
+}
+
+/* ========= Lista de Abrigos ========= */
+.lista-abrigos {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.lista-abrigos li {
+  background: #f9f9f9;
+  margin-bottom: 12px;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.lista-abrigos strong {
+  font-size: 1.1em;
+  color: #333;
+}
+
+.lista-abrigos a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.lista-abrigos a:hover {
+  text-decoration: underline;
+}
+
+/* ========= Mapa ========= */
+#mapa {
+  height: 450px;
+  width: 100%;
+  margin-top: 30px;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+footer {
+  background-color: #1b4f72;
+  color: #f0f4f8;
+  padding: 40px 20px 20px 20px;
+  font-size: 0.9rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.rodape {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.rodape-coluna {
+  flex: 1 1 250px;
+}
+
+.rodape-coluna h3 {
+  font-size: 1rem;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.rodape-coluna p,
+.rodape-coluna a {
+  color: #bbdefb;
+  margin: 4px 0;
+  font-weight: 400;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.rodape-coluna a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 25px;
+  margin-top: 30px;
+  border-top: 1px solid #3282b8;
+  font-size: 0.85rem;
+  color: #bbdefb;
+}
+
+/* ========= Responsividade ========= */
+@media (max-width: 720px) {
+  .cabecalho {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .imagem-header {
+    margin: 10px 0;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: #1b4f72;
+    padding: 10px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    flex-wrap: nowrap;
+  }
+
+  nav button {
+    background-color: transparent;
+    border: none;
+    color: #f0f4f8;
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 0;
+    border-bottom: 3px solid transparent;
+    transition: background-color 0.3s ease, border-bottom 0.3s ease;
+  }
+
+  nav button:hover,
+  nav button.active {
+    background-color: rgba(255,255,255,0.05);
+    border-bottom: 3px solid #bbe1fa;
+  }
+}
+
+/* ========= Seções de Emergência ========= */
+.lista-emergencia {
+  list-style-type: none;
+  padding: 0;
+}
+
+.lista-emergencia li {
+  margin-bottom: 16px;
+  padding: 12px;
+  background-color: #f2f2f2;
+  border-left: 4px solid #d32f2f;
+  border-radius: 4px;
+}
+
+.dicas-emergencia {
+  margin-top: 20px;
+  padding-left: 20px;
+}
+
+.dicas-emergencia li {
+  margin-bottom: 10px;
+}
+
+.nota {
+  margin-top: 20px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: #1b4f72;
+  padding: 10px 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+nav button {
+  background-color: transparent;
+  border: none;
+  color: #f0f4f8;
+  padding: 12px 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 0;
+  transition: background-color 0.3s ease, border-bottom 0.3s ease;
+  border-bottom: 3px solid transparent;
+}
+
+nav button:hover,
+nav button.active {
+  background-color: rgba(255,255,255,0.05);
+  border-bottom: 3px solid #bbe1fa;
+}
+
+.footer {
+  background-color: #1b2a3a;
+  color: #e3eaf0;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 40px 20px 30px 20px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.rodape-info {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  text-align: left;
+}
+
+.rodape-info h3 {
+  color: #ffffff;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.rodape-info p,
+.rodape-info a {
+  color: #cfd8dc;
+  margin: 4px 0;
+  font-size: 0.88rem;
+  text-decoration: none;
+}
+
+.rodape-info a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.rodape-logos {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.rodape-logos img {
+  height: 70px;
+  width: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  transition: transform 0.2s ease;
+}
+
+.rodape-logos img:hover {
+  transform: scale(1.05);
+}
+
+.rodape-copy {
+  margin-top: 30px;
+  font-size: 0.85rem;
+  color: #a9b7c6;
+  border-top: 1px solid #3a4d5f;
+  padding-top: 20px;
+}
+  
+
+.alerta-info {
+  background-color: #e3f2fd; /* azul claro da sua paleta */
+  color: #1b4f72;            /* tom escuro para o texto */
+  border: 2px solid #bbe1fa; /* borda sutil azul */
+  padding: 15px 20px;
+  margin-top: 15px;
+  border-radius: 15px;       /* bordas arredondadas */
+  font-weight: 500;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* sombra suave */
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* ========= Ajustes extras para responsividade ========= */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.6rem;
+  }
+
+  header p {
+    font-size: 0.95rem;
+  }
+
+  .cabecalho {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .imagem-header {
+    width: 65px;
+    height: 65px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    padding: 8px 5px;
+  }
+
+  nav button {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    min-width: auto;
+  }
+
+  main {
+    padding: 0 12px;
+  }
+
+  .aba {
+    padding: 18px 20px;
+    border-radius: 15px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  select,
+  textarea {
+    max-width: 100%;
+    font-size: 0.95rem;
+    padding: 10px 12px;
+  }
+
+  #mapa {
+    height: 300px;
+  }
+
+  .rodape,
+  .rodape-info {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .rodape-coluna,
+  .rodape-info div {
+    flex: 1 1 100%;
+  }
+
+  .rodape-logos {
+    gap: 20px;
+  }
+
+  .rodape-logos img {
+    height: 55px;
+  }
+}
+
+@media (max-width: 400px) {
+  header h1 {
+    font-size: 1.3rem;
+  }
+
+  nav button {
+    font-size: 0.8rem;
+    padding: 6px 8px;
+  }
+
+  .aba {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  #mapa {
+    height: 250px;
+  }
+}

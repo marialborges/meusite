@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ajuda Após Enchentes - RS</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+  <header>
+    <div class="cabecalho">
+      <h1>Ajuda Após Enchentes - Rio Grande do Sul</h1>
+
+    </div>
+    <nav>
+      <button onclick="mostrarAba('abrigos')" class="active">Abrigos</button>
+      <button onclick="mostrarAba('cadastro')">Cadastro de Ajuda</button>
+      <button onclick="mostrarAba('informacoes')">Informações</button>
+      <button onclick="mostrarAba('links')">Links Oficiais</button>
+      <button onclick="mostrarAba('emergencia')">Emergência</button>
+      <button onclick="mostrarAba('colabore')">Colabore</button>
+
+    </nav>
+  </header>
+
+  <main>
+  <section id="abrigos" class="aba">
+       <h2>Buscar Abrigos Próximos</h2>
+      <input type="text" id="localizacao" placeholder="Digite sua localização ou bairro" />
+      <button onclick="buscarAbrigos()">Buscar</button>
+      <div id="resultado" role="alert" aria-live="polite"></div>
+
+      <div id="mapa" aria-label="Mapa mostrando localização dos abrigos"></div>
+
+    <h3>Lista de Abrigos</h3>
+    <input type="text" id="filtroAbrigos" placeholder="Filtrar por nome ou bairro" oninput="filtrarAbrigos()" />
+    <ul id="abrigos-lista" class="lista-abrigos"></ul>
+
+      </section> 
+
+
+    <section id="cadastro" class="aba" style="display: none;">
+      <h2>Cadastro de Ajuda</h2>
+      <form onsubmit="enviarCadastro(event)" aria-label="Formulário de cadastro para ajuda">
+        
+    <!-- Tipo de Ajuda -->
+      <label for="tipoAjuda">Tipo de ajuda:</label><br>
+     <select id="tipoAjuda" onchange="mostrarCampos()" required>
+      <option value="">Selecione</option>
+      <option value="precisa">Preciso de ajuda</option>
+      <option value="oferece">Quero oferecer ajuda</option>
+    </select><br><br>
+
+    <!-- Mensagem explicativa -->
+    <p id="mensagemAjuda" class="mensagem-ajuda"></p>
+
+    <!-- Campos comuns -->
+    <label for="nome">Nome:</label><br>
+    <input id="nome" type="text" required /><br><br>
+
+    <label for="contato">Contato (telefone ou e-mail):</label><br>
+    <input id="contato" type="text" required /><br><br>
+    <!-- Campos para quem PRECISA DE AJUDA -->
+    <div id="blocoPrecisa" style="display: none;">
+      <label for="bairro">Bairro afetado:</label><br>
+      <input id="bairro" type="text" /><br><br>
+
+      <label for="urgencia">Nível de urgência:</label><br>
+      <select id="urgencia">
+        <option value="">Selecione</option>
+        <option value="baixa">Baixa</option>
+        <option value="media">Média</option>
+        <option value="alta">Alta</option>
+      </select><br><br>
+      <label for="quantidadePessoas">Número de pessoas afetadas:</label><br>
+      <input id="quantidadePessoas" type="number" min="1" /><br><br>
+    </div>
+    <!-- Campos para quem OFERECE AJUDA -->
+    <div id="blocoOferece" style="display: none;">
+      <label for="tipoRecurso">Tipo de recurso oferecido:</label><br>
+      <input id="tipoRecurso" type="text" placeholder="Ex: alimento, abrigo, roupa" /><br><br>
+
+      <label for="disponibilidade">Disponibilidade (dias/horários):</label><br>
+      <input id="disponibilidade" type="text" /><br><br>
+    </div>
+
+    <!-- Campo comum -->
+    <label for="descricao">Descrição:</label><br>
+    <textarea id="descricao" rows="4" required></textarea><br><br>
+
+    <button type="submit">Enviar</button>
+    <button type="reset" style="margin-left: 10px;">Limpar</button>
+  </form>
+  <!-- Mensagem de confirmação -->
+  <div id="mensagem" class="mensagem-confirmacao" style="display:none;"></div>
+</section>
+
+
+   <section id="informacoes" class="aba" style="display: none;">
+  <h2>Informações e Atualizações Importantes</h2>
+  <ul>
+    <li><strong>29/05/2025:</strong> Defesa Civil alerta para risco de deslizamentos em áreas de encosta após chuvas intensas.</li>
+    <li><strong>28/05/2025:</strong> Novo abrigo disponível na Escola Municipal Rui Barbosa (Bairro Canudos).</li>
+    <li><strong>27/05/2025:</strong> Equipes da saúde oferecem vacinação contra tétano e hepatite em centros de acolhimento.</li>
+    <li><strong>26/05/2025:</strong> Evite contato com a água da enchente. Use botas ou sacos plásticos duplos nos pés se for inevitável.</li>
+    <li><strong>25/05/2025:</strong> Aulas seguem suspensas nas redes públicas municipais em áreas afetadas.</li>
+  </ul>
+
+  <h3>Cuidados durante e após enchentes:</h3>
+  <ul>
+    <li>Evite transitar por ruas alagadas — a água pode esconder buracos ou fios energizados.</li>
+    <li>Desligue o disjuntor geral ao sair de casa alagada. Não use equipamentos elétricos molhados.</li>
+    <li>Higienize objetos e alimentos que tiveram contato com a água da enchente.</li>
+    <li>Beba apenas água potável ou fervida.</li>
+    <li>Procure abrigo em locais seguros e não volte para casa até que seja liberado pela Defesa Civil.</li>
+  </ul>
+
+  <h3>Documentos e pertences:</h3>
+  <ul>
+    <li>Se possível, mantenha documentos importantes em sacos plásticos vedados.</li>
+    <li>Fotografe documentos com o celular — isso pode ajudar em caso de perda.</li>
+  </ul>
+
+  <p>
+    Para informações oficiais e atualizações em tempo real, acompanhe os canais da 
+    <a href="https://defesacivil.rs.gov.br" target="_blank" rel="noopener noreferrer">Defesa Civil RS</a>,
+    <a href="https://www.corporesgate.rs.gov.br" target="_blank" rel="noopener noreferrer">Corpo de Bombeiros</a>
+    e rádios locais de emergência.
+  </p>
+
+  <p style="font-size: 0.9em; color: gray;">
+  Este site é um projeto colaborativo. Voluntários autorizados podem sugerir atualizações e melhorias. Todo conteúdo publicado passa por uma revisão para garantir informações seguras e relevantes. Para participar, entre em contato com o responsável pelo projeto.
+</p>
+</section>
+
+    <section id="links" class="aba" style="display: none;">
+      <h2>Links Oficiais e Recursos Úteis</h2>
+      <ul>
+        <li><a href="https://defesacivil.rs.gov.br" target="_blank" rel="noopener noreferrer">Defesa Civil RS</a> – Informações e alertas oficiais</li>
+        <li><a href="https://www.corporesgate.rs.gov.br" target="_blank" rel="noopener noreferrer">Corpo de Bombeiros RS</a> – Serviços de emergência e resgate</li>
+        <li><a href="https://www.saude.rs.gov.br" target="_blank" rel="noopener noreferrer">Secretaria Estadual de Saúde RS</a> – Atendimento e suporte médico</li>
+        <li><a href="https://www.gov.br/pt-br/servicos" target="_blank" rel="noopener noreferrer">Portal do Governo Federal</a> – Serviços e orientações diversas</li>
+        <li><a href="https://www.gov.br/mdh/pt-br" target="_blank" rel="noopener noreferrer">Ministério da Cidadania</a> – Programas sociais e apoio às famílias</li>
+        <li><a href="https://www.inmet.gov.br/" target="_blank" rel="noopener noreferrer">INMET - Instituto Nacional de Meteorologia</a> – Previsões e alertas meteorológicos</li>
+      </ul>
+    </section>
+
+  <section id="emergencia" class="aba" style="display: none;">
+  <h2>Contatos de Emergência</h2>
+  <ul>
+    <li><strong>Bombeiros:</strong> 193</li>
+    <li><strong>Defesa Civil:</strong> 199</li>
+    <li><strong>SAMU:</strong> 192</li>
+    <li><strong>WhatsApp Denúncias:</strong> (51) 99981-5833</li>
+  </ul>
+
+  <h3>Está em perigo?</h3>
+  <p>Se você ou alguém próximo está em risco imediato, use uma das opções abaixo:</p>
+
+  <button onclick="abrirAjudaRapida()"> Preciso de ajuda AGORA</button>
+  <button onclick="mostrarAba('cadastro')"> Cadastrar para receber ajuda</button>
+
+
+  <div id="ajudaRapida" style="display:none; margin-top: 20px; background: #f9f9f9; padding: 15px; border-radius: 8px;">
+    <h4>Solicitação de Ajuda Imediata</h4>
+    <p>Descreva brevemente sua situação e localização:</p>
+    <textarea id="msgAjudaRapida" rows="4" placeholder="Ex: Estou preso com minha família na Rua A, bairro Primavera. Água subindo." style="width: 100%; padding: 5px;"></textarea>
+    <input type="text" id="contatoAjudaRapida" placeholder="(Opcional) Telefone ou WhatsApp para retorno" style="width: 100%; padding: 5px; margin-top: 10px;">
+    <p style="color: darkred; font-size: 0.85em;">⚠️ Falsas emergências prejudicam vidas. Todas as mensagens podem ser verificadas.</p>
+    <button onclick="enviarAjudaRapida()">📨 Enviar pedido</button>
+    <button onclick="fecharAjudaRapida()">Cancelar</button>
+  </div>
+</section>
+
+</section>
+
+  <section id="colabore" class="aba" style="display: none;">
+  <h2>Colabore com o Projeto</h2>
+
+  <h3> Sobre o Projeto</h3>
+  <p>
+    Este site é um protótipo criado para ajudar pessoas afetadas por enchentes. Ele reúne informações sobre abrigos, doações, contatos úteis e atualizações importantes. A proposta é que o site evolua com a colaboração de voluntários e membros da comunidade.
+  </p>
+  <p>
+    As sugestões são analisadas antes de serem publicadas, garantindo que apenas informações confiáveis estejam disponíveis.
+  </p>
+
+  <hr>
+
+  <h3> Envie uma Sugestão</h3>
+  <form onsubmit="event.preventDefault(); alert('Sugestão enviada para moderação!');">
+    <label for="nome">Seu nome:</label><br>
+    <input type="text" id="nome" required><br><br>
+
+    <label for="info">Informação ou sugestão:</label><br>
+    <textarea id="info" rows="4" required></textarea><br><br>
+
+    <button type="submit">Enviar</button>
+  </form>
+  <p style="font-size: 0.9em; color: gray;">
+    Este é um formulário demonstrativo sem envio real de dados.
+  </p>
+
+  <hr>
+
+  
+  </main>
+
+<footer>
+  <div class="rodape-info">
+    <div>
+    
+      <h3>Sobre o Projeto</h3>
+      <p>Plataforma aberta e solidária para apoio em emergências climáticas.</p>
+      <p><a href="#colabore">Participe</a> • <a href="#informacoes">Entenda mais</a></p>
+    </div>
+    <div>
+      <h3>Transparência</h3>
+      <p><a href="#">Ver código no GitHub</a></p>
+      <p><a href="#">Licença MIT</a></p>
+    </div>
+  </div>
+
+  <div class="rodape-logos">
+    <img src="brasao-do-brasil.png" alt="Brasão do Brasil" />
+    <img src="rgs.png" alt="Brasão do RS" />
+    <img src="nh.png" alt="Brasão de Novo Hamburgo" />
+  </div>
+
+  <div class="rodape-copy">
+    © 2025 • Governo Federal • Estado do RS • Município de Novo Hamburgo
+  </div>
+</footer>
+
+
+<script src="script.js"></script>
+
+
+</body>
+</html>
